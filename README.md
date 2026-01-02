@@ -13,7 +13,7 @@ Personal portfolio showcasing projects, skills, and web development experience.
 Here are some screenshots of the portfolio:
 
 ### Home Page
-![Home Page](Home-page.png)
+![Home Page](public/Home-page.png)
 
 ### Projects Section
 ![Projects Section](./screenshots/projects.png)
