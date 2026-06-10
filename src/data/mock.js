@@ -1,48 +1,58 @@
-export const profilephot = new URL('../assets/profile.jpeg', import.meta.url).href;
+export const profilephot = new URL('../assets/image.png', import.meta.url).href;
 
 export const personalInfo = {
   name: "Siddaroodh Venkatapur",
-  role: "Final-Year B.Tech Student | Aspiring Full-Stack & AI/ML Engineer",
-  email: "siddaroodh2004@gmail.com",
+  role: "B.Tech Graduate (2026) | Aspiring Software & Backend Developer",
+  email: "siddaroodhv@gmail.com",
   phone: "+91-8618075500",
   location: "Bengaluru, Karnataka",
   linkedin: "https://www.linkedin.com/in/siddaroodh-821551262",
   github: "https://github.com/siddaroodh05",
-  leetcode: "https://leetcode.com/u/siddaroodh_2004",
+  leetcode: "https://leetcode.com/u/siddaroodh__2004/",
   hackerrank: "https://www.hackerrank.com/profile/siddaroodh2004",
   profileImage: profilephot,
-  resumeUrl: "https://drive.google.com/file/d/1g27uM3ivKM8-2k7S-o8_T4G7oIqEj6Kq/view?usp=sharing",
-  about: "Final-year B.Tech Computer Science (AI & ML) student at Alliance University, building AI-powered web applications with React and FastAPI. Passionate about solving real-world problems through clean code, scalable systems, and applied AI."
+  resumeUrl: "https://drive.google.com/file/d/1QIwhM7uo8OiTrdex39tXxhG3lh-9Opfk/view?usp=sharing",
+  about: "B.Tech Graduate in Computer Science (AI & ML) from Alliance University, building AI-powered web applications with React and FastAPI, and passionate about solving real-world problems through clean code, scalable systems, and applied AI."
 };
 
 
 export const skills = {
+
+  backend: [
+    { name: "Python", level: 75 },
+    { name: "FastAPI", level: 75 },
+    { name: "Java", level: 70 }
+  ],
+  database: [
+    { name: "MySQL", level: 60 }, {
+      name: "PostgreSQL", level: 65
+    }
+  ],
+  tools: [
+    { name: "Git & GitHub", level: 65 },
+    { name: "VS Code", level: 65 },
+    { name: "Data Structures", level: 75 },
+    { name: "OOP", level: 70 }
+  ],
   frontend: [
     { name: "React", level: 85 },
     { name: "JavaScript (ES6+)", level: 70 },
     { name: "HTML5", level: 70 },
     { name: "CSS3", level: 50 }
   ],
-  backend: [
-    { name: "Python", level: 75 },
-    { name: "FastAPI", level: 75 },
-    { name: "Java", level: 70 },
-    { name: "C++", level: 50 }
-  ],
-  database: [
-    { name: "MySQL", level: 60 },{
-      name: "PostgreSQL",level:65
-    }
-  ],
-  tools: [
-    { name: "Git & GitHub", level: 65 },
-    { name: "VS Code", level: 65 },
-    { name: "Data Structures", level: 60 },
-    { name: "OOP", level: 70 }
-  ]
 };
 
 export const projects = [
+
+  {
+    id: 3,
+    title: "FinTech-transaction-platform",
+    description: "Built a microservices-based FinTech platform with secure JWT authentication, idempotent fund transfers, consistent balance management, and a React frontend using Zustand integrated through an API Gateway to FastAPI services.",
+    image: "https://tse1.mm.bing.net/th/id/OIP.CykPyN_A6KbCYVDIdVDFuAHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    technologies: ["FastAPI", "React", "PostgreSQL", "REST APIs", "API Gateway"],
+    github: "https://github.com/siddaroodh05",
+    demo: "#"
+  },
   {
     id: 4,
     title: "ATS Launchpad – AI Resume Analyzer",
@@ -76,18 +86,9 @@ export const projects = [
     technologies: ["Python", "NumPy", "Pandas", "Matplotlib", "yFinance"],
     github: "https://github.com/siddaroodh05/Stock-Portfolio-Optimization",
     demo: "#"
-  },
-  {
-    id: 3,
-    title: "AI-Powered Task Manager",
-    description: "Smart task management application with AI-driven priority suggestions and deadline predictions. Features include task categorization and productivity analytics.",
-    image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&h=600&fit=crop",
-    technologies: [, "FastAPI", "Python", "PostgreSQL"],
-    github: "https://github.com/siddaroodh05",
-    demo: "#"
   }
 
-  
+
 
 ];
 
@@ -98,7 +99,7 @@ export const education = [
     degree: "B.Tech in Computer Science and Engineering",
     specialization: "Artificial Intelligence and Machine Learning",
     year: "2022 - 2026",
-    gpa: "7.5 CGPA"
+    gpa: "7.6 CGPA"
   },
   {
     id: 2,
@@ -141,6 +142,6 @@ export const certifications = [
 
 export const achievements = [
   "5★ Rating on HackerRank (Python)",
-  "Solved 100+ coding problems on LeetCode",
+  "Solved 200+ coding problems on LeetCode",
   "Participated in ML Blitz Hackathon at Alliance University"
 ];

@@ -45,7 +45,7 @@ const Portfolio = () => {
             </h1>
             <p className="hero-subtitle">{personalInfo.role}</p>
             <p className="hero-description">
-            Passionate about building scalable web applications and exploring applied AI/ML solutions.
+              Passionate about building scalable web applications and exploring applied AI/ML solutions.
             </p>
             <div className="hero-buttons">
               <a href={personalInfo.resumeUrl} download className="btn btn-primary">
@@ -76,7 +76,7 @@ const Portfolio = () => {
               <p>{personalInfo.about}</p>
               <div className="about-stats">
                 <div className="stat-item">
-                  <span className="stat-number">100+</span>
+                  <span className="stat-number">200+</span>
                   <span className="stat-label">LeetCode Problems</span>
                 </div>
                 <div className="stat-item">
@@ -200,7 +200,7 @@ const Portfolio = () => {
       <section id="experience" className="experience-section">
         <div className="section-container">
           <h2 className="section-title">Education & Certifications</h2>
-          
+
           <div className="timeline">
             <h3 className="subsection-title">Education</h3>
             {education.map((edu) => (
@@ -242,14 +242,14 @@ const Portfolio = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="contact-section" style={{display:"flex",alignItems:'center'}}>
+      <section id="contact" className="contact-section" style={{ display: "flex", alignItems: 'center' }}>
         <div className="section-container" >
           <h2 className="section-title">Get In Touch</h2>
-          <div className="contact-content" style={{display:"flex",alignItems:'center'}}>
+          <div className="contact-content" style={{ display: "flex", alignItems: 'center' }}>
             <div className="contact-info">
               <h3>Let's Connect</h3>
               <p>I’m always open to learning through new projects and internship opportunities.</p>
-              
+
               <div className="contact-details">
                 <div className="contact-item">
                   <span className="contact-icon">📧</span>
@@ -281,7 +281,7 @@ const Portfolio = () => {
               </div>
             </div>
 
-         
+
           </div>
         </div>
       </section>
