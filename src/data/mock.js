@@ -1,4 +1,4 @@
-export const profilephot = new URL('../assets/image.png', import.meta.url).href;
+export const profilephot = new URL('../assets/profile.png', import.meta.url).href;
 
 export const personalInfo = {
   name: "Siddaroodh Venkatapur",
