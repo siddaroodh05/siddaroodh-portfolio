@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Menu, Moon, Sun, X } from 'lucide-react';
 import '../styles/Portfolio.css';
 
 const Navbar = ({ theme, toggleTheme }) => {
@@ -24,18 +25,18 @@ const Navbar = ({ theme, toggleTheme }) => {
   return (
     <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
       <div className="navbar-container">
-        <div className="navbar-logo" onClick={() => scrollToSection('home')}>
+        <button className="navbar-logo" onClick={() => scrollToSection('home')}>
+          <span className="logo-mark">&lt;/&gt;</span>
           <span className="logo-text">Siddaroodh</span>
-        </div>
+        </button>
 
         <button 
           className="mobile-menu-toggle"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label="Toggle menu"
+          aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileMenuOpen}
         >
-          <span></span>
-          <span></span>
-          <span></span>
+          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
 
         <div className={`navbar-links ${mobileMenuOpen ? 'mobile-menu-open' : ''}`}>
@@ -46,8 +47,8 @@ const Navbar = ({ theme, toggleTheme }) => {
           <button onClick={() => scrollToSection('experience')} className="nav-link">Education</button>
           <button onClick={() => scrollToSection('contact')} className="nav-link">Contact</button>
           
-          <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle theme">
-            {theme === 'light' ? '🌙' : '☀️'}
+          <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle color theme">
+            {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
           </button>
         </div>
       </div>

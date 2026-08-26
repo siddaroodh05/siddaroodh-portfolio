@@ -5,8 +5,6 @@ import '../styles/Portfolio.css';
 
 const Portfolio = () => {
   const [theme, setTheme] = useState('dark');
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [formStatus, setFormStatus] = useState('');
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
@@ -14,18 +12,6 @@ const Portfolio = () => {
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
-  const handleFormChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    // Mock form submission
-    setFormStatus('Thank you! Your message has been sent successfully.');
-    setFormData({ name: '', email: '', message: '' });
-    setTimeout(() => setFormStatus(''), 5000);
   };
 
   const scrollToTop = () => {
@@ -40,12 +26,13 @@ const Portfolio = () => {
       <section id="home" className="hero-section">
         <div className="hero-content">
           <div className="hero-text">
+            <p className="hero-kicker">Welcome to my portfolio / Aspiring backend engineer</p>
             <h1 className="hero-title">
-              Hi, I'm <span className="highlight">{personalInfo.name}</span>
+              <span className="highlight">{personalInfo.name}</span>
             </h1>
-            <p className="hero-subtitle">{personalInfo.role}</p>
+            <p className="hero-subtitle">Backend Engineer / Java / Spring Boot / PostgreSQL</p>
             <p className="hero-description">
-              Passionate about building scalable web applications and exploring applied AI/ML solutions.
+              I engineer reliable backend systems that transform complex challenges into elegant, scalable solutions.
             </p>
             <div className="hero-buttons">
               <a href={personalInfo.resumeUrl} download className="btn btn-primary">
@@ -55,11 +42,6 @@ const Portfolio = () => {
                 Contact Me
               </button>
             </div>
-          </div>
-          <div className="hero-graphic">
-            <div className="geometric-shape shape-1"></div>
-            <div className="geometric-shape shape-2"></div>
-            <div className="geometric-shape shape-3"></div>
           </div>
         </div>
       </section>
@@ -76,7 +58,7 @@ const Portfolio = () => {
               <p>{personalInfo.about}</p>
               <div className="about-stats">
                 <div className="stat-item">
-                  <span className="stat-number">200+</span>
+                  <span className="stat-number">290+</span>
                   <span className="stat-label">LeetCode Problems</span>
                 </div>
                 <div className="stat-item">
@@ -84,7 +66,7 @@ const Portfolio = () => {
                   <span className="stat-label">HackerRank Python</span>
                 </div>
                 <div className="stat-item">
-                  <span className="stat-number">3+</span>
+                  <span className="stat-number">1</span>
                   <span className="stat-label">Certifications</span>
                 </div>
               </div>
@@ -98,21 +80,6 @@ const Portfolio = () => {
         <div className="section-container">
           <h2 className="section-title">Technical Skills</h2>
           <div className="skills-grid">
-            <div className="skill-category">
-              <h3 className="category-title">Frontend</h3>
-              {skills.frontend.map((skill, index) => (
-                <div key={index} className="skill-item">
-                  <div className="skill-header">
-                    <span className="skill-name">{skill.name}</span>
-                    <span className="skill-percentage">{skill.level}%</span>
-                  </div>
-                  <div className="skill-bar">
-                    <div className="skill-progress" style={{ width: `${skill.level}%` }}></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
             <div className="skill-category">
               <h3 className="category-title">Backend</h3>
               {skills.backend.map((skill, index) => (
@@ -146,6 +113,21 @@ const Portfolio = () => {
             <div className="skill-category">
               <h3 className="category-title">Tools & Others</h3>
               {skills.tools.map((skill, index) => (
+                <div key={index} className="skill-item">
+                  <div className="skill-header">
+                    <span className="skill-name">{skill.name}</span>
+                    <span className="skill-percentage">{skill.level}%</span>
+                  </div>
+                  <div className="skill-bar">
+                    <div className="skill-progress" style={{ width: `${skill.level}%` }}></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="skill-category">
+              <h3 className="category-title">Frontend</h3>
+              {skills.frontend.map((skill, index) => (
                 <div key={index} className="skill-item">
                   <div className="skill-header">
                     <span className="skill-name">{skill.name}</span>
@@ -242,10 +224,10 @@ const Portfolio = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="contact-section" style={{ display: "flex", alignItems: 'center' }}>
-        <div className="section-container" >
+      <section id="contact" className="contact-section">
+        <div className="section-container">
           <h2 className="section-title">Get In Touch</h2>
-          <div className="contact-content" style={{ display: "flex", alignItems: 'center' }}>
+          <div className="contact-content">
             <div className="contact-info">
               <h3>Let's Connect</h3>
               <p>I’m always open to learning through new projects and internship opportunities.</p>
@@ -289,7 +271,7 @@ const Portfolio = () => {
       {/* Footer */}
       <footer className="footer">
         <div className="footer-content">
-          <p>&copy; 2025 {personalInfo.name}. All rights reserved.</p>
+          <p>&copy; 2026 {personalInfo.name}. All rights reserved.</p>
           <button onClick={scrollToTop} className="back-to-top" aria-label="Back to top">
             ↑
           </button>
