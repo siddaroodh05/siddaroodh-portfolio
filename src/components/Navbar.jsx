@@ -26,11 +26,11 @@ const Navbar = ({ theme, toggleTheme }) => {
     <nav className={`navbar ${scrolled ? 'navbar-scrolled' : ''}`}>
       <div className="navbar-container">
         <button className="navbar-logo" onClick={() => scrollToSection('home')}>
-          <span className="logo-mark">SV</span>
+          <span className="logo-mark">&lt;/&gt;</span>
           <span className="logo-text">Siddaroodh</span>
         </button>
 
-        <button
+        <button 
           className="mobile-menu-toggle"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
@@ -46,7 +46,7 @@ const Navbar = ({ theme, toggleTheme }) => {
           <button onClick={() => scrollToSection('projects')} className="nav-link">Projects</button>
           <button onClick={() => scrollToSection('experience')} className="nav-link">Education</button>
           <button onClick={() => scrollToSection('contact')} className="nav-link">Contact</button>
-
+          
           <button onClick={toggleTheme} className="theme-toggle" aria-label="Toggle color theme">
             {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
           </button>
