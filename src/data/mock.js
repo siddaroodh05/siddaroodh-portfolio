@@ -7,7 +7,7 @@ export const personalInfo = {
   phone: "+91-8618075500",
   location: "Bengaluru, Karnataka",
   linkedin: "https://www.linkedin.com/in/siddaroodh-venkatapur-821551262",
-  github: "https://github.com/siddaroodh",
+  github: "https://github.com/siddaroodh05",
   leetcode: "https://leetcode.com/u/siddaroodh__2004/",
   hackerrank: "https://www.hackerrank.com/profile/siddaroodh2004",
   profileImage: profilephot,
