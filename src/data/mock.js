@@ -11,7 +11,7 @@ export const personalInfo = {
   leetcode: "https://leetcode.com/u/siddaroodh__2004/",
   hackerrank: "https://www.hackerrank.com/profile/siddaroodh2004",
   profileImage: profilephot,
-  resumeUrl: "https://drive.google.com/file/d/1QnsNhbfr7kmKo7jskii6feOZ__OAahRz/view?usp=sharing",
+  resumeUrl: "https://drive.google.com/file/d/1rwqrR0x_RhjY1IkLyUI7hxBWw6Rwv-CW/view?usp=sharing",
   about: "Software Engineering graduate (B.Tech 2026) with hands-on experience building scalable backend systems using Java, Spring Boot, Spring Security, and PostgreSQL. Skilled in REST APIs, microservices, authentication, concurrency handling, and transaction management, with strong problem-solving abilities demonstrated through 350+ coding problems across LeetCode, HackerRank, and GeeksforGeeks."
 };
 
@@ -39,7 +39,7 @@ export const skills = {
     { name: "Data Structures & Algorithms", level: 82 }
   ],
   frontend: [
-    { name: "React.js", level: 70 }
+    { name: "React.js", level: 60 }
   ],
 };
 
