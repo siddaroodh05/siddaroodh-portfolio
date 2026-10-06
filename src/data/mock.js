@@ -11,7 +11,7 @@ export const personalInfo = {
   leetcode: "https://leetcode.com/u/siddaroodh__2004/",
   hackerrank: "https://www.hackerrank.com/profile/siddaroodh2004",
   profileImage: profilephot,
-  resumeUrl: "https://drive.google.com/file/d/1rwqrR0x_RhjY1IkLyUI7hxBWw6Rwv-CW/view?usp=sharing",
+  resumeUrl: "https://drive.google.com/file/d/140DMre8uBDF1ax9RDoVrVlt5H68Ah5vB/view?usp=sharing",
   about: "Software engineering graduate focused on building reliable backend systems and useful AI-powered products. I enjoy integrating large language models into applications and using retrieval-augmented generation (RAG), embeddings, and vector search to make product experiences more relevant and useful. My hands-on work spans Java, Spring Boot, PostgreSQL, Spring AI, Ollama, Hugging Face, and pgvector, alongside REST APIs, authentication, and microservices. I bring a product-minded approach to engineering, from shaping the data pipeline to delivering a clear experience for users."
 };
 
