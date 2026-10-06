@@ -68,7 +68,7 @@ export const projects = [
     description: "Built Authentication, Account, and Transaction microservices with JWT authentication, refresh token rotation, RBAC, idempotent transaction processing, optimistic locking, and an API Gateway.",
     image: "https://tse1.mm.bing.net/th/id/OIP.CykPyN_A6KbCYVDIdVDFuAHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     technologies: ["Java", "Spring Boot", "Spring Security", "PostgreSQL", "REST APIs", "API Gateway"],
-    github: "https://github.com/siddaroodh",
+    github: "https://github.com/digital-banking-platform/Core-Banking-System",
     demo: "#"
   },
   {
@@ -89,8 +89,8 @@ export const projects = [
       "React 19",
       "Vite"
     ],
-    github: "https://github.com/siddaroodh/ATS-Launchpod-Full-Stack-Resume-Analyzer-Job-Fit-Platform",
-    demo: "https://atslaunchpad1.vercel.app"
+    github: "https://github.com/siddaroodh05/ATS-Launchpad",
+    demo: "https://ats-launchpad.vercel.app/"
   },
   {
     id: 4,
