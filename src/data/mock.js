@@ -2,8 +2,8 @@ export const profilephot = new URL('../assets/profile.png', import.meta.url).hre
 
 export const personalInfo = {
   name: "Siddaroodh Venkatapur",
-  role: "Software Engineering Graduate (B.Tech 2026) | Backend Software Engineer",
-  email: "siddaroodhv@gmail.com",
+  role: "Software Engineering Graduate | Backend & Generative AI Engineer",
+  email: "siddaroodh2004@gmail.com",
   phone: "+91-8618075500",
   location: "Bengaluru, Karnataka",
   linkedin: "https://www.linkedin.com/in/siddaroodh-venkatapur-821551262",
@@ -12,7 +12,7 @@ export const personalInfo = {
   hackerrank: "https://www.hackerrank.com/profile/siddaroodh2004",
   profileImage: profilephot,
   resumeUrl: "https://drive.google.com/file/d/1rwqrR0x_RhjY1IkLyUI7hxBWw6Rwv-CW/view?usp=sharing",
-  about: "Software Engineering graduate (B.Tech 2026) with hands-on experience building scalable backend systems using Java, Spring Boot, Spring Security, and PostgreSQL. Skilled in REST APIs, microservices, authentication, concurrency handling, and transaction management, with strong problem-solving abilities demonstrated through 350+ coding problems across LeetCode, HackerRank, and GeeksforGeeks."
+  about: "Software engineering graduate focused on building reliable backend systems and useful AI-powered products. I enjoy integrating large language models into applications and using retrieval-augmented generation (RAG), embeddings, and vector search to make product experiences more relevant and useful. My hands-on work spans Java, Spring Boot, PostgreSQL, Spring AI, Ollama, Hugging Face, and pgvector, alongside REST APIs, authentication, and microservices. I bring a product-minded approach to engineering, from shaping the data pipeline to delivering a clear experience for users."
 };
 
 
@@ -31,6 +31,14 @@ export const skills = {
     { name: "Hibernate", level: 72 },
     { name: "SQL", level: 75 }
   ],
+  generativeAI: [
+    { name: "LLM Integration", level: 76 },
+    { name: "Retrieval-Augmented Generation (RAG)", level: 76 },
+    { name: "Spring AI", level: 70 },
+    { name: "Ollama & Embeddings", level: 70 },
+    { name: "pgvector / Semantic Search", level: 70 },
+    { name: "Hugging Face", level: 68 }
+  ],
   tools: [
     { name: "Git & GitHub", level: 75 },
     { name: "VS Code", level: 75 },
@@ -44,6 +52,15 @@ export const skills = {
 };
 
 export const projects = [
+  {
+    id: 6,
+    title: "GameSense: Content-Based Game Discovery Using RAG",
+    description: "Built a Spring Boot game discovery service that turns review history or a custom query into semantic recommendations. Uses LLM-generated queries, Ollama embeddings, and PostgreSQL/pgvector search; evaluation achieved ~70% LLM-judged precision across 200 users.",
+    image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000&h=650&fit=crop",
+    technologies: ["Java 17", "Spring Boot", "PostgreSQL", "pgvector", "Spring AI", "Ollama", "Hugging Face"],
+    github: "https://github.com/siddaroodh05/rag-game-recommendation-system",
+    demo: "#"
+  },
 
   {
     id: 1,
@@ -56,28 +73,24 @@ export const projects = [
   },
   {
     id: 2,
-    title: "ATS Launchpad – AI Resume Analyzer",
-    description: "Built an AI-driven ATS resume analyzer with job-fit analysis, skill gap detection, MCQ assessments, job matching, and downloadable ATS reports.",
+    title: "ATS Launchpad — Resume Analysis & Career Readiness",
+    description: "Built a full-stack career readiness platform for resume parsing, ATS scoring, AI feedback, job-description matching, and personalized MCQ interview prep. Streams typed AI analysis events to the React UI as results arrive, with secure JWT authentication.",
     image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop",
     technologies: [
-      "React",
-      "FastAPI",
+      "Java 17",
+      "Spring Boot",
+      "Spring Security",
+      "Spring Data JPA",
       "PostgreSQL",
-      "Gemini 2.5 Flash",
-      "ReportLab",
-      "REST APIs"
+      "JWT",
+      "Apache Tika",
+      "Spring AI / Groq",
+      "Reactor Flux / SSE",
+      "React 19",
+      "Vite"
     ],
     github: "https://github.com/siddaroodh/ATS-Launchpod-Full-Stack-Resume-Analyzer-Job-Fit-Platform",
     demo: "https://atslaunchpad1.vercel.app"
-  },
-  {
-    id: 3,
-    title: "FinTech Transaction Platform",
-    description: "Built a microservices-based FinTech platform with secure JWT authentication, idempotent fund transfers, consistent balance management, and a React frontend integrated through an API Gateway.",
-    image: "https://tse1.mm.bing.net/th/id/OIP.CykPyN_A6KbCYVDIdVDFuAHaE8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
-    technologies: ["FastAPI", "React", "PostgreSQL", "REST APIs", "API Gateway"],
-    github: "https://github.com/siddaroodh05",
-    demo: "#"
   },
   {
     id: 4,

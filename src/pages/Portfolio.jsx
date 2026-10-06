@@ -1,284 +1,136 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  ArrowDown, ArrowDownRight, ArrowUpRight, Check, Code2, Github, Linkedin,
+  Mail, MapPin,
+} from 'lucide-react';
 import Navbar from '../components/Navbar';
 import { personalInfo, skills, projects, education, certifications, achievements } from '../data/mock';
 import '../styles/Portfolio.css';
+const projectFilters = ['All', 'Backend', 'Full stack', 'Frontend', 'Data'];
+const projectType = (project) => {
+  const title = project.title.toLowerCase();
+  if (title.includes('stock')) return 'Data';
+  if (title.includes('dmart')) return 'Frontend';
+  if (title.includes('ats') || title.includes('fintech')) return 'Full stack';
+  return 'Backend';
+};
 
-const Portfolio = () => {
-  const [theme, setTheme] = useState('dark');
+function Portfolio() {
+  const [theme, setTheme] = useState(() => localStorage.getItem('portfolio-theme') || 'dark');
+  const [filter, setFilter] = useState('All');
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('portfolio-theme', theme);
   }, [theme]);
 
-  const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-  };
+  const visibleProjects = useMemo(
+    () => filter === 'All' ? projects : projects.filter((project) => projectType(project) === filter),
+    [filter],
+  );
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(personalInfo.email);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.href = `mailto:${personalInfo.email}`;
+    }
   };
 
   return (
-    <div className="portfolio-container">
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+    <div className="portfolio-shell">
+      <Navbar theme={theme} toggleTheme={() => setTheme((current) => current === 'dark' ? 'light' : 'dark')} />
 
-      {/* Hero Section */}
-      <section id="home" className="hero-section">
-        <div className="hero-content">
-          <div className="hero-text">
-            <p className="hero-kicker">Welcome to my portfolio / Aspiring backend engineer</p>
-            <h1 className="hero-title">
-              <span className="highlight">{personalInfo.name}</span>
-            </h1>
-            <p className="hero-subtitle">Backend Engineer / Java / Spring Boot / PostgreSQL</p>
-            <p className="hero-description">
-              I engineer reliable backend systems that transform complex challenges into elegant, scalable solutions.
-            </p>
-            <div className="hero-buttons">
-              <a href={personalInfo.resumeUrl} download className="btn btn-primary">
-                Download Resume
-              </a>
-              <button onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })} className="btn btn-secondary">
-                Contact Me
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="about-section">
-        <div className="section-container">
-          <h2 className="section-title">About Me</h2>
-          <div className="about-content">
-            <div className="about-image">
-              <img src={personalInfo.profileImage} alt={personalInfo.name} className="profile-photo" />
-            </div>
-            <div className="about-text">
-              <p>{personalInfo.about}</p>
-              <div className="about-stats">
-                <div className="stat-item">
-                  <span className="stat-number">290+</span>
-                  <span className="stat-label">LeetCode Problems</span>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-number">5★</span>
-                  <span className="stat-label">HackerRank Python</span>
-                </div>
-                <div className="stat-item">
-                  <span className="stat-number">1</span>
-                  <span className="stat-label">Certifications</span>
-                </div>
+      <main>
+        <section className="hero" id="home">
+          <div className="hero-grid" aria-hidden="true" />
+          <div className="hero-inner page-width">
+            <div className="hero-copy">
+              <p className="eyebrow"><span className="status-dot" /> Open to software & GenAI opportunities</p>
+              <h1>Building reliable<br /><span>systems that scale.</span></h1>
+              <p className="hero-summary">Hey, I’m <strong>Siddaroodh</strong> — a software engineering graduate who builds dependable backend systems and product experiences powered by LLMs and RAG.</p>
+              <div className="hero-actions">
+                <a className="button button-primary" href="#projects">Explore my work <ArrowDownRight size={17} /></a>
+                <a className="button button-quiet" href={personalInfo.resumeUrl} target="_blank" rel="noreferrer">View resume <ArrowUpRight size={16} /></a>
+              </div>
+              <div className="hero-socials" aria-label="Social profiles">
+                <a href={personalInfo.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17} /></a>
+                <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={17} /></a>
+                <a href={`mailto:${personalInfo.email}`} aria-label="Email"><Mail size={17} /></a>
+                <span className="social-divider" />
+                <span><MapPin size={14} /> Bengaluru, India</span>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section id="skills" className="skills-section">
-        <div className="section-container">
-          <h2 className="section-title">Technical Skills</h2>
-          <div className="skills-grid">
-            <div className="skill-category">
-              <h3 className="category-title">Backend</h3>
-              {skills.backend.map((skill, index) => (
-                <div key={index} className="skill-item">
-                  <div className="skill-header">
-                    <span className="skill-name">{skill.name}</span>
-                    <span className="skill-percentage">{skill.level}%</span>
-                  </div>
-                  <div className="skill-bar">
-                    <div className="skill-progress" style={{ width: `${skill.level}%` }}></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="skill-category">
-              <h3 className="category-title">Database</h3>
-              {skills.database.map((skill, index) => (
-                <div key={index} className="skill-item">
-                  <div className="skill-header">
-                    <span className="skill-name">{skill.name}</span>
-                    <span className="skill-percentage">{skill.level}%</span>
-                  </div>
-                  <div className="skill-bar">
-                    <div className="skill-progress" style={{ width: `${skill.level}%` }}></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="skill-category">
-              <h3 className="category-title">Tools & Others</h3>
-              {skills.tools.map((skill, index) => (
-                <div key={index} className="skill-item">
-                  <div className="skill-header">
-                    <span className="skill-name">{skill.name}</span>
-                    <span className="skill-percentage">{skill.level}%</span>
-                  </div>
-                  <div className="skill-bar">
-                    <div className="skill-progress" style={{ width: `${skill.level}%` }}></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="skill-category">
-              <h3 className="category-title">Frontend</h3>
-              {skills.frontend.map((skill, index) => (
-                <div key={index} className="skill-item">
-                  <div className="skill-header">
-                    <span className="skill-name">{skill.name}</span>
-                    <span className="skill-percentage">{skill.level}%</span>
-                  </div>
-                  <div className="skill-bar">
-                    <div className="skill-progress" style={{ width: `${skill.level}%` }}></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="projects-section">
-        <div className="section-container">
-          <h2 className="section-title">Featured Projects</h2>
-          <div className="projects-grid">
-            {projects.map((project) => (
-              <div key={project.id} className="project-card">
-                <div className="project-image">
-                  <img src={project.image} alt={project.title} loading="lazy" />
-                  <div className="project-overlay">
-                    <div className="project-links">
-                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="project-link-btn">
-                        GitHub
-                      </a>
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer" className="project-link-btn">
-                        Live Demo
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="project-content">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                  <div className="project-tech">
-                    {project.technologies.map((tech, index) => (
-                      <span key={index} className="tech-tag">{tech}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Experience/Education Section */}
-      <section id="experience" className="experience-section">
-        <div className="section-container">
-          <h2 className="section-title">Education & Certifications</h2>
-
-          <div className="timeline">
-            <h3 className="subsection-title">Education</h3>
-            {education.map((edu) => (
-              <div key={edu.id} className="timeline-item">
-                <div className="timeline-marker"></div>
-                <div className="timeline-content">
-                  <span className="timeline-year">{edu.year}</span>
-                  <h4 className="timeline-title">{edu.degree}</h4>
-                  <p className="timeline-subtitle">{edu.institution}</p>
-                  {edu.specialization && <p className="timeline-detail">Specialization: {edu.specialization}</p>}
-                  <p className="timeline-detail">Grade: {edu.gpa}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="certifications">
-            <h3 className="subsection-title">Certifications</h3>
-            <div className="cert-grid">
-              {certifications.map((cert) => (
-                <div key={cert.id} className="cert-card">
-                  <h4 className="cert-name">{cert.name}</h4>
-                  <p className="cert-issuer">{cert.issuer}</p>
-                  <span className="cert-year">{cert.year}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="achievements">
-            <h3 className="subsection-title">Achievements</h3>
-            <ul className="achievements-list">
-              {achievements.map((achievement, index) => (
-                <li key={index}>{achievement}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="contact-section">
-        <div className="section-container">
-          <h2 className="section-title">Get In Touch</h2>
-          <div className="contact-content">
-            <div className="contact-info">
-              <h3>Let's Connect</h3>
-              <p>I’m always open to learning through new projects and internship opportunities.</p>
-
-              <div className="contact-details">
-                <div className="contact-item">
-                  <span className="contact-icon">📧</span>
-                  <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
-                </div>
-                <div className="contact-item">
-                  <span className="contact-icon">📱</span>
-                  <span>{personalInfo.phone}</span>
-                </div>
-                <div className="contact-item">
-                  <span className="contact-icon">📍</span>
-                  <span>{personalInfo.location}</span>
-                </div>
-              </div>
-
-              <div className="social-links">
-                <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="social-link">
-                  GitHub
-                </a>
-                <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="social-link">
-                  LinkedIn
-                </a>
-                <a href={personalInfo.leetcode} target="_blank" rel="noopener noreferrer" className="social-link">
-                  LeetCode
-                </a>
-                <a href={personalInfo.hackerrank} target="_blank" rel="noopener noreferrer" className="social-link">
-                  HackerRank
-                </a>
+            <div className="hero-card-wrap">
+              <div className="hero-orbit orbit-one" />
+              <div className="hero-orbit orbit-two" />
+              <div className="hero-card">
+                <div className="card-topline"><span>PROFILE / 2026</span><Code2 size={17} /></div>
+                <img className="hero-avatar" src={personalInfo.profileImage} alt={`${personalInfo.name} portrait`} />
+                <h2>{personalInfo.name}</h2>
+                <p>Backend & Generative AI Engineer</p>
+                <div className="card-stack"><span>Java</span><span>Spring Boot</span><span>PostgreSQL</span></div>
+                <div className="card-bottom"><span><i /> Available for opportunities</span><span>01 — 05</span></div>
               </div>
             </div>
-
-
+            <a href="#about" className="scroll-cue"><ArrowDown size={14} /> Scroll to explore</a>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-content">
-          <p>&copy; 2026 {personalInfo.name}. All rights reserved.</p>
-          <button onClick={scrollToTop} className="back-to-top" aria-label="Back to top">
-            ↑
-          </button>
-        </div>
-      </footer>
+        <section className="section about-section" id="about">
+          <div className="page-width about-layout">
+            <div className="section-heading"><p className="eyebrow">01 / A little about me</p><h2>Engineering with<br /><span>purpose.</span></h2></div>
+            <div className="about-copy"><p>{personalInfo.about}</p><div className="stat-row"><div><strong>350<span>+</span></strong><small>coding problems</small></div><div><strong>05<span>+</span></strong><small>projects built</small></div><div><strong>5<span>★</span></strong><small>HackerRank rating</small></div></div></div>
+          </div>
+        </section>
+
+        <section className="section skills-section" id="skills">
+          <div className="page-width">
+            <div className="section-heading section-heading-row"><div><p className="eyebrow">02 / Tools of the trade</p><h2>My technical <span>toolkit.</span></h2></div><p className="section-aside">The tools I use to turn ideas<br />into dependable software.</p></div>
+            <div className="skill-groups">
+              {Object.entries(skills).map(([category, items], index) => (
+                <article className="skill-group" key={category}>
+                  <div className="skill-group-head"><span className="skill-index">0{index + 1}</span><h3>{category === 'tools' ? 'Tools & practices' : category}</h3></div>
+                  <div className="skill-chips">{items.map((skill) => <span key={skill.name}>{skill.name}</span>)}</div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section projects-section" id="projects">
+          <div className="page-width">
+            <div className="section-heading section-heading-row"><div><p className="eyebrow">03 / Selected work</p><h2>Projects with a <span>purpose.</span></h2></div><p className="section-aside">A few things I’ve designed,<br />built, and learned from.</p></div>
+            <div className="project-toolbar"><div className="filter-list" role="group" aria-label="Filter projects">{projectFilters.map((item) => <button key={item} className={filter === item ? 'filter-button active' : 'filter-button'} onClick={() => setFilter(item)} aria-pressed={filter === item}>{item}</button>)}</div><span className="project-count">{String(visibleProjects.length).padStart(2, '0')} projects</span></div>
+            <div className="projects-grid">
+              {visibleProjects.map((project) => (
+                <article className="project-card" key={project.id}>
+                  <div className="project-image-wrap"><img src={project.image} alt={`${project.title} preview`} loading="lazy" /><span className="project-number">0{projects.indexOf(project) + 1}</span><a className="project-open" href={project.github} target="_blank" rel="noreferrer" aria-label={`View ${project.title} on GitHub`}><ArrowUpRight size={19} /></a></div>
+                  <div className="project-info"><div className="project-meta"><span>{projectType(project)}</span><span>2024 — 2026</span></div><h3>{project.title}</h3><p>{project.description}</p><div className="project-tags">{project.technologies.map((tech) => <span key={tech}>{tech}</span>)}</div><div className="project-links"><a href={project.github} target="_blank" rel="noreferrer">Source code <ArrowUpRight size={14} /></a>{project.demo && project.demo !== '#' && <a href={project.demo} target="_blank" rel="noreferrer">Live preview <ArrowUpRight size={14} /></a>}</div></div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section journey-section" id="journey">
+          <div className="page-width journey-layout">
+            <div className="section-heading"><p className="eyebrow">04 / The journey so far</p><h2>Learning is<br /><span>the work.</span></h2><p className="journey-intro">Curiosity has taken me from the classroom to building practical software and exploring what’s next.</p></div>
+            <div className="journey-content"><h3 className="subheading">Education</h3><div className="timeline">{education.map((item) => <article className="timeline-item" key={item.id}><span className="timeline-dot" /><div className="timeline-meta"><span>{item.year}</span><span>{item.gpa}</span></div><h4>{item.degree}</h4><p>{item.institution}{item.specialization ? ` · ${item.specialization}` : ''}</p></article>)}</div>
+              <h3 className="subheading cert-heading">Certifications & highlights</h3><div className="highlight-list">{certifications.map((cert) => <div className="highlight-item" key={cert.id}><span className="highlight-check"><Check size={14} /></span><div><b>{cert.name}</b><small>{cert.issuer} · {cert.year}</small></div></div>)}{achievements.map((achievement) => <div className="highlight-item" key={achievement}><span className="highlight-check"><Check size={14} /></span><div><b>{achievement}</b><small>Problem solving</small></div></div>)}</div>
+            </div>
+          </div>
+        </section>
+
+        <section className="contact-section" id="contact"><div className="page-width contact-inner"><p className="eyebrow">05 / Have a good one in mind?</p><h2>Let’s build something<br /><span>meaningful.</span></h2><p>I’m open to backend and Generative AI roles, internships, and conversations about building useful AI-powered products.</p><div className="contact-actions"><button className="button button-primary" onClick={copyEmail}>{copied ? 'Email copied' : 'Get in touch'} {copied ? <Check size={16} /> : <Mail size={16} />}</button><a className="button button-outline" href={personalInfo.linkedin} target="_blank" rel="noreferrer">Connect on LinkedIn <ArrowUpRight size={16} /></a></div><a className="contact-email" href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a></div></section>
+      </main>
+
+      <footer className="site-footer"><div className="page-width footer-inner"><a href="#home" className="footer-brand"><span>&lt;/&gt;</span> SV.</a><p>Designed & built with care · © {new Date().getFullYear()} Siddaroodh Venkatapur</p><a href="#home" className="back-top">Back to top <ArrowUpRight size={14} /></a></div></footer>
     </div>
   );
-};
+}
 
 export default Portfolio;
